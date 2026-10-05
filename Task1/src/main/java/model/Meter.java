@@ -38,6 +38,11 @@ public final class Meter {
         return zone;
     }
 
+    //неизменяемая копия истории показаний
+    public List<MeterReadings> getReadings() {
+        return List.copyOf(readings);
+    }
+
     //добавить показание + проверка что оно не меньше предыдущего
     public void addReading(MeterReadings reading) {
         Objects.requireNonNull(reading, "показания");

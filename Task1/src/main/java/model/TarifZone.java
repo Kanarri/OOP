@@ -6,7 +6,11 @@ public enum TarifZone {
 
     private final String zone;
 
-    TarifZone(String zone) {
+    TarifZone(String zone){
         this.zone = zone;
+    }
+
+    public String getZone() {
+        return zone;
     }
 }
