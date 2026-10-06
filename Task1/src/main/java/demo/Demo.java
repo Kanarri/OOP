@@ -32,6 +32,27 @@ public final class Demo {
         List<Meter> meters = buildMeters(accounts);
 
         ChargingService charger = new ChargingService(tariffs, norms, meters);
+
+        showConsumption(meters);
+    }
+
+    private static void showConsumption(List<Meter> meters) {
+        System.out.println("Расход между показаниями");
+
+        Meter cold = meters.stream()
+                .filter(m -> m.getService() == ServiceType.COLD_WATER)
+                .findFirst()
+                .orElseThrow();
+
+        List<MeterReadings> rs = cold.getReadings();
+        MeterReadings r1 = rs.get(0);
+        MeterReadings r2 = rs.get(1);
+
+        long consumption = MeterReadings.consumptionBetween(r1, r2);
+        System.out.printf("  Счётчик %s: с %s по %s израсходовано %d %s%n",
+                cold.getSerial(), r1.date(), r2.date(),
+                consumption, cold.getService().getUnit());
+        System.out.println();
     }
 
     //СЧЕТЧИКИ
