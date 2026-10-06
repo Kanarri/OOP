@@ -9,7 +9,7 @@ public enum ServiceType {
     HOT_WATER("м^3", true),
     COLD_WATER("м^3", true),
     ELECTRICITY("кВт*ч", true),
-    HEATING("гКал", true),
+    HEATING("гКал", false),
     GARBAGE("чел.", false)
     ;
 
