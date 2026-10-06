@@ -37,7 +37,20 @@ public final class Demo {
     private static List<Meter> buildMeters(List<Account> accounts) {
     }
 
+    //СЧЕТА
     private static List<Account> buildAccounts() {
+        List<Account> list = new ArrayList<>();
+        list.add(new Account("ЛС-001",
+                new Housing("ул. Ленина, 1, кв. 1", 5_400, 3)));
+        list.add(new Account("ЛС-002",
+                new Housing("ул. Ленина, 1, кв. 2", 7_250, 4)));
+        list.add(new Account("ЛС-003",
+                new Housing("ул. Ленина, 1, кв. 3", 3_800, 2)));
+        list.add(new Account("ЛС-004",
+                new Housing("ул. Мира, 5, кв. 10", 6_100, 1)));
+        list.add(new Account("ЛС-005",
+                new Housing("ул. Мира, 5, кв. 11", 4_500, 3)));
+        return list;
     }
 
     //НОРМАТИВЫ
