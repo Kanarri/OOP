@@ -1,14 +1,17 @@
 package model;
 
+import model.Account;
+import model.Charge;
+import model.Meter;
+import model.MeterReadings;
+import model.ServiceType;
+import model.Tariff;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Начисление по показаниям счётчика. Если показаний нет —
- * делегирует расчёт нормативному правилу.
- */
 public final class ByMeterRule implements ChargingRule {
 
     private final List<Meter> meters;
@@ -18,8 +21,8 @@ public final class ByMeterRule implements ChargingRule {
     public ByMeterRule(List<Meter> meters,
                        TariffLookup tariffs,
                        ChargingRule fallback) {
-        this.meters   = List.copyOf(meters);
-        this.tariffs  = tariffs;
+        this.meters = List.copyOf(meters);
+        this.tariffs = tariffs;
         this.fallback = fallback;
     }
 
@@ -28,10 +31,10 @@ public final class ByMeterRule implements ChargingRule {
         Meter meter = findMeter(account, service);
 
         LocalDate start = month.atDay(1);
-        LocalDate end   = month.atEndOfMonth();
+        LocalDate end = month.atEndOfMonth();
 
         Optional<MeterReadings> from = meter.readingAtOrBefore(start);
-        Optional<MeterReadings> to   = meter.readingAtOrBefore(end);
+        Optional<MeterReadings> to = meter.readingAtOrBefore(end);
 
         if (from.isEmpty() || to.isEmpty()) {
             return fallback.charge(account, service, month);
@@ -45,7 +48,7 @@ public final class ByMeterRule implements ChargingRule {
         long sum = consumption * tariff.pricePerUnitKopeyks();
 
         String explanation = String.format(
-                "%d %s × %d,%02d руб/%s (тариф с %s)",
+                "%d %s x %d,%02d руб/%s (тариф с %s)",
                 consumption, service.getUnit(),
                 tariff.pricePerUnitKopeyks() / 100, tariff.pricePerUnitKopeyks() % 100,
                 service.getUnit(), tariff.from());
