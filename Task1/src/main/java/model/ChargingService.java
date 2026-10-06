@@ -49,4 +49,33 @@ public final class ChargingService {
                 ? chargeByMeter(account, service, month)
                 : chargeByNorm(account, service, month);
     }
+
+    private Charge chargeByNorm(Account account, ServiceType service, YearMonth month) {
+        LocalDate mid = month.atDay(15);
+        Norma norm = normFor(service, mid);
+        Tariff tariff = tariffForDate(service, mid);
+
+        Housing h = account.getHousing();
+
+        //объём в тысячных долях единицы
+        long quantityMilli;
+        if (norm.perPerson()) {
+            quantityMilli = (long) h.residents() * norm.valueMilli();
+        } else {
+            // площадь в сотых м2, норматив в тысячных
+            quantityMilli = h.area() * norm.valueMilli() / 100;
+        }
+
+        // сумма в копейках = quantityMilli × цена/1000
+        long sum = quantityMilli * tariff.pricePerUnitKopeyks() / 1000;
+
+        String explanation = String.format(
+                "%s × %d,%03d × %d,%02d ₽ (норматив)",
+                norm.perPerson() ? h.residents() + " чел." : h.areaSquareMeters() + " м²",
+                norm.valueMilli() / 1000, norm.valueMilli() % 1000,
+                tariff.pricePerUnitKopeyks() / 100, tariff.pricePerUnitKopeyks() % 100
+        );
+
+        return new Charge(service, month, sum, explanation);
+    }
 }
