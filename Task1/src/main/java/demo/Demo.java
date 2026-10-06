@@ -36,6 +36,25 @@ public final class Demo {
         showConsumption(meters);
         showEqualsContract(accounts);
         showInvalidReading(meters);
+        showCharges(charger, accounts);
+    }
+
+    private static void showCharges(ChargingService charger, List<Account> accounts) {
+        System.out.println("Начисления за февраль 2025");
+
+        YearMonth month = YearMonth.of(2025, 2);
+        List<ServiceType> services = List.of(
+                ServiceType.COLD_WATER,
+                ServiceType.HOT_WATER,
+                ServiceType.ELECTRICITY,
+                ServiceType.HEATING,
+                ServiceType.GARBAGE
+        );
+
+        for (Account acc : accounts) {
+            Receipt receipt = Receipt.of(acc, month, services, charger);
+            System.out.println(receipt.format());
+        }
     }
 
     private static void showInvalidReading(List<Meter> meters) {
