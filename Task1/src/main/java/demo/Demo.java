@@ -34,6 +34,22 @@ public final class Demo {
         ChargingService charger = new ChargingService(tariffs, norms, meters);
 
         showConsumption(meters);
+        showEqualsContract(accounts);
+    }
+
+    private static void showEqualsContract(List<Account> accounts) {
+        System.out.println("Контракт equals/hashCode");
+
+        Account first = accounts.get(0);
+        Account sameNumber = new Account(first.getNumber(),
+                new Housing("другой адрес", 1_000, 1));
+        Account other = accounts.get(1);
+
+        System.out.println("Одинаковый номер => equals = " + first.equals(sameNumber));
+        System.out.println("Одинаковый номер => hashCode равны = "
+                + (first.hashCode() == sameNumber.hashCode()));
+        System.out.println("Разные номера => equals = " + first.equals(other));
+        System.out.println();
     }
 
     private static void showConsumption(List<Meter> meters) {
