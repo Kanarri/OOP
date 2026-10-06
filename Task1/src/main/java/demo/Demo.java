@@ -40,7 +40,28 @@ public final class Demo {
     private static List<Account> buildAccounts() {
     }
 
+    //НОРМАТИВЫ
     private static List<Norma> buildNorms() {
+        System.out.println("Нормативы");
+        List<Norma> list = new ArrayList<>();
+
+        LocalDate from = LocalDate.of(2025, 1, 1);
+        LocalDate to = LocalDate.of(2026, 1, 1);
+
+        // отопление 0,020 гкал на м2
+        list.add(new Norma(ServiceType.HEATING, false, 20, from, to));
+        // вывоз мусора 1,5 м3 на человека
+        list.add(new Norma(ServiceType.GARBAGE, true, 1_500, from, to));
+
+        for (Norma n : list) {
+            System.out.printf("  %-12s  %-8s  %d,%03d  [%s .. %s)%n",
+                    n.service(),
+                    n.perPerson() ? "на чел." : "на м²",
+                    n.valueMilli() / 1000, n.valueMilli() % 1000,
+                    n.from(), n.to());
+        }
+        System.out.println();
+        return list;
     }
 
     // ТАРИФЫ
