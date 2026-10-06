@@ -35,6 +35,24 @@ public final class Demo {
 
         showConsumption(meters);
         showEqualsContract(accounts);
+        showInvalidReading(meters);
+    }
+
+    private static void showInvalidReading(List<Meter> meters) {
+        System.out.println("Некорректное показание");
+
+        Meter cold = meters.stream()
+                .filter(m -> m.getService() == ServiceType.COLD_WATER)
+                .findFirst()
+                .orElseThrow();
+
+        try {
+            cold.addReading(new MeterReadings(LocalDate.of(2025, 4, 1), 1));
+            System.out.println("Ошибка: исключение не брошено");
+        } catch (InvalidReadingException e) {
+            System.out.println("Поймано исключение: " + e.getMessage());
+        }
+        System.out.println();
     }
 
     private static void showEqualsContract(List<Account> accounts) {
