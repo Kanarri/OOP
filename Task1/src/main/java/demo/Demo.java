@@ -27,29 +27,54 @@ public final class Demo {
         System.out.println("Показания счётчиков и начисления\n");
 
         List<Tariff> tariffs = buildTariffs();
-        List<Norma> norms   = buildNorms();
+        List<Norma> norms = buildNorms();
         List<Account> accounts = buildAccounts();
         List<Meter> meters = buildMeters(accounts);
 
         ChargingService charger = new ChargingService(tariffs, norms, meters);
     }
 
+    //СЧЕТЧИКИ
     private static List<Meter> buildMeters(List<Account> accounts) {
+        List<Meter> meters = new ArrayList<>();
+
+        for (int i = 0; i < accounts.size(); i++) {
+            Account acc = accounts.get(i);
+            long base = 1000 + i * 100L;
+
+            //холодная
+            Meter cold = new Meter("CW-" + i, acc, ServiceType.COLD_WATER, null);
+            cold.addReading(new MeterReadings(LocalDate.of(2025, 1, 1), base));
+            cold.addReading(new MeterReadings(LocalDate.of(2025, 2, 1), base + 5 + i));
+            cold.addReading(new MeterReadings(LocalDate.of(2025, 3, 1), base + 11 + i));
+            meters.add(cold);
+
+            //горячая
+            Meter hot = new Meter("HW-" + i, acc, ServiceType.HOT_WATER, null);
+            hot.addReading(new MeterReadings(LocalDate.of(2025, 1, 1), base));
+            hot.addReading(new MeterReadings(LocalDate.of(2025, 2, 1), base + 3));
+            hot.addReading(new MeterReadings(LocalDate.of(2025, 3, 1), base + 7));
+            meters.add(hot);
+
+            // электричество, дневная зона
+            Meter el = new Meter("EL-" + i, acc, ServiceType.ELECTRICITY, TarifZone.DAY);
+            el.addReading(new MeterReadings(LocalDate.of(2025, 1, 1), base * 10));
+            el.addReading(new MeterReadings(LocalDate.of(2025, 2, 1), base * 10 + 150));
+            el.addReading(new MeterReadings(LocalDate.of(2025, 3, 1), base * 10 + 320));
+            meters.add(el);
+        }
+
+        return meters;
     }
 
     //СЧЕТА
     private static List<Account> buildAccounts() {
         List<Account> list = new ArrayList<>();
-        list.add(new Account("ЛС-001",
-                new Housing("ул. Ленина, 1, кв. 1", 5_400, 3)));
-        list.add(new Account("ЛС-002",
-                new Housing("ул. Ленина, 1, кв. 2", 7_250, 4)));
-        list.add(new Account("ЛС-003",
-                new Housing("ул. Ленина, 1, кв. 3", 3_800, 2)));
-        list.add(new Account("ЛС-004",
-                new Housing("ул. Мира, 5, кв. 10", 6_100, 1)));
-        list.add(new Account("ЛС-005",
-                new Housing("ул. Мира, 5, кв. 11", 4_500, 3)));
+        list.add(new Account("ЛС-1", new Housing("ул. Ленина, 1, кв. 1", 5_400, 3)));
+        list.add(new Account("ЛС-2", new Housing("ул. Ленина, 1, кв. 2", 7_250, 4)));
+        list.add(new Account("ЛС-3", new Housing("ул. Ленина, 1, кв. 3", 3_800, 2)));
+        list.add(new Account("ЛС-4", new Housing("ул. Мира, 5, кв. 10", 6_100, 1)));
+        list.add(new Account("ЛС-5", new Housing("ул. Мира, 5, кв. 11", 4_500, 3)));
         return list;
     }
 
