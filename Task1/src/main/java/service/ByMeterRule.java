@@ -1,11 +1,6 @@
-package model;
+package service;
 
-import model.Account;
-import model.Charge;
-import model.Meter;
-import model.MeterReadings;
-import model.ServiceType;
-import model.Tariff;
+import model.*;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

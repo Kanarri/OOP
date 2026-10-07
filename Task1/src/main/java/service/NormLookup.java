@@ -1,4 +1,7 @@
-package model;
+package service;
+
+import model.Norma;
+import model.ServiceType;
 
 import java.time.LocalDate;
 

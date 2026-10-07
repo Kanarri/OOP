@@ -1,4 +1,6 @@
-package model;
+package exceptions;
+
+import model.MeterReadings;
 
 /**
  * если показание меньше предыдущего то ошибка

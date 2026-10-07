@@ -1,9 +1,9 @@
 package demo;
 
 import model.Account;
-import model.ChargingService;
+import service.ChargingService;
 import model.Housing;
-import model.InvalidReadingException;
+import exceptions.InvalidReadingException;
 import model.Meter;
 import model.MeterReadings;
 import model.Norma;

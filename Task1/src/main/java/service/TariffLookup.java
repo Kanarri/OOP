@@ -1,4 +1,7 @@
-package model;
+package service;
+
+import model.ServiceType;
+import model.Tariff;
 
 import java.time.LocalDate;
 

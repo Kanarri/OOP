@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.InvalidReadingException;
+
 import java.time.LocalDate;
 import java.util.Objects;
 

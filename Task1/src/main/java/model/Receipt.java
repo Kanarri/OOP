@@ -1,5 +1,7 @@
 package model;
 
+import service.ChargingService;
+
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;

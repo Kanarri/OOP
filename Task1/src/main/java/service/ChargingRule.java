@@ -1,4 +1,6 @@
-package model;
+package service;
+
+import model.*;
 
 import java.time.YearMonth;
 
