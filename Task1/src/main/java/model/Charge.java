@@ -10,10 +10,7 @@ import java.util.Objects;
  * @param sumKopeyks сумма в копейках
  * @param explanation расшифровка (объём, тариф, норматив)
  */
-public record Charge(ServiceType service,
-                     java.time.YearMonth period,
-                     long sumKopeyks,
-                     String explanation) {
+public record Charge(ServiceType service, java.time.YearMonth period, long sumKopeyks, String explanation) {
 
     public Charge {
         Objects.requireNonNull(service, "услуга");

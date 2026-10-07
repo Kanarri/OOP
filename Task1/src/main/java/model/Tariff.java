@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * тариф на услугу действующий в интервале {@code [from, to)}.
+ * тариф на услугу действующий в интервале from - to.
  * @param service вид услуги
  * @param zone тарифная зона день/ночь
  * @param from дата начала действия включительно
@@ -12,11 +12,7 @@ import java.util.Objects;
  * @param pricePerUnitKopeyks цена за единицу услуги в копейках
  */
 
-public record Tariff(ServiceType service,
-                     TarifZone zone,
-                     LocalDate from,
-                     LocalDate to,
-                     long pricePerUnitKopeyks) {
+public record Tariff(ServiceType service, TarifZone zone, LocalDate from, LocalDate to, long pricePerUnitKopeyks) {
 
     public Tariff {
         Objects.requireNonNull(service);

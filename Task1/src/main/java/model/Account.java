@@ -15,7 +15,7 @@ public final class Account {
         this.number = Objects.requireNonNull(number, "номер");
         this.housing = Objects.requireNonNull(housing, "жилплощадь");
         if (number.isBlank()) {
-            throw new IllegalArgumentException("number is blank");
+            throw new IllegalArgumentException("номер пуст");
         }
     }
 
