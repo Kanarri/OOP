@@ -1,6 +1,6 @@
 package model;
 
-public record Voter(String id, DistrictId district, Ballot ballot) {
+public record Voter(String id, String district, Ballot ballot) {
     public Voter {
         if (id == null) {
             throw new IllegalArgumentException("voter id is null");

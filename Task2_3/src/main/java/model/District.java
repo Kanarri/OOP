@@ -3,11 +3,11 @@ package model;
 import java.util.HashSet;
 import java.util.List;
 
-public record District(DistrictId id, List<Candidate> candidates) {
+public record District(String districtId, List<Candidate> candidates) {
 
     public District {
-        if (id == null) {
-            throw new IllegalArgumentException("district id is null");
+        if (districtId == null) {
+            throw new IllegalArgumentException("id is null");
         }
         if (candidates == null) {
             throw new IllegalArgumentException("district candidates is null");
