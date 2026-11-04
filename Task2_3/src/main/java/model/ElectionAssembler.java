@@ -46,5 +46,28 @@ public final class ElectionAssembler {
         return ballots;
     }
 
-    public static Map<String, Election> forAllDistricts(List<District> districts, List<Voter> voters) {}
+    public static Map<String, Election> forAllDistricts(List<District> districts,
+                                                        List<Voter> voters) {
+        if (districts.isEmpty())
+            throw new IllegalArgumentException("districts is empty");
+        if (voters.isEmpty())
+            throw new IllegalArgumentException("voters is empty");
+
+        Set<String> districtIds = new HashSet<>();
+        for (District d: districts) {
+            districtIds.add(d.districtId());
+        }
+
+        for (Voter v: voters) {
+            if (!districtIds.contains(v.district())) {
+                throw new IllegalArgumentException("voter is from wrong district");
+            }
+        }
+
+        Map<String, Election> result = new LinkedHashMap<>();
+        for (District d: districts) {
+            result.put(d.districtId(), forDistrict(d, voters));
+        }
+        return result;
+    }
 }
