@@ -12,14 +12,6 @@ public record Candidate(String id, String name){
         }
     }
 
-    public String id() {
-        return id;
-    }
-
-    public String name() {
-        return name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
