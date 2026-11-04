@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 public record Candidate(String id, String name){

@@ -10,7 +10,7 @@ public record District(DistrictId id, List<Candidate> candidates) {
             throw new IllegalArgumentException("district id is null");
         }
         if (candidates == null) {
-            throw new IllegalArgumentException("district candidates is empty");
+            throw new IllegalArgumentException("district candidates is null");
         }
         candidates = List.copyOf(candidates);
         if (new HashSet<>(candidates).size() != candidates.size()) {
