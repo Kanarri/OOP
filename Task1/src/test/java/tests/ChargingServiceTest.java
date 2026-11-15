@@ -25,7 +25,7 @@ class ChargingServiceTest {
 
         Meter meter = new Meter("CW-1", acc, ServiceType.COLD_WATER, null);
         meter.addReading(new MeterReadings(LocalDate.of(2025, 1, 1), 100));
-        meter.addReading(new MeterReadings(LocalDate.of(2025, 2, 1), 110));
+        meter.addReading(new MeterReadings(LocalDate.of(2025, 2, 5), 110));
 
         List<Tariff> tariffs = List.of(new Tariff(
                 ServiceType.COLD_WATER, null, FROM, TO, 45_00));

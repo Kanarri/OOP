@@ -13,9 +13,7 @@ public final class ByMeterRule implements ChargingRule {
     private final TariffLookup tariffs;
     private final ChargingRule fallback;
 
-    public ByMeterRule(List<Meter> meters,
-                       TariffLookup tariffs,
-                       ChargingRule fallback) {
+    public ByMeterRule(List<Meter> meters, TariffLookup tariffs, ChargingRule fallback) {
         this.meters = List.copyOf(meters);
         this.tariffs = tariffs;
         this.fallback = fallback;
