@@ -2,6 +2,9 @@ package model;
 
 import java.util.*;
 
+/**
+ * Сборщик входа для подсчёта
+ */
 public final class ElectionAssembler {
     private ElectionAssembler() {}
 

@@ -4,6 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Готовый вход для подсчёта: кандидаты и бюллетени одного округа
+ * @param candidates кандидаты округа
+ * @param ballots бюллетени избирателей этого округа
+ */
 public record Election(List<Candidate> candidates, List<Ballot> ballots) {
     public Election {
         if (candidates == null || candidates.isEmpty()) {

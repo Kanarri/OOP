@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * Избиратель
+ * @param id уникальный идентификатор избирателя
+ * @param district идентификатор округа избирателя
+ * @param ballot бюллетень избирателя
+ */
 public record Voter(String id, String district, Ballot ballot) {
     public Voter {
         if (id == null) {

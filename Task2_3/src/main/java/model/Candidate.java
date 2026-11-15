@@ -1,8 +1,15 @@
 package model;
 
-import java.util.HashSet;
 import java.util.Objects;
 
+/**
+ * Кандидат в избирательном округе.
+ * Идентичность определяется полем {@code id}:
+ * два кандидата равны, если равны их {@code id}
+ *
+ * @param id   уникальный идентификатор кандидата
+ * @param name отображаемое имя
+ */
 public record Candidate(String id, String name){
     public Candidate{
         if (id == null) {

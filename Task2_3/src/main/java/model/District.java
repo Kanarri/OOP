@@ -3,8 +3,12 @@ package model;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Избирательный округ: идентификатор и объявленный список кандидатов.
+ * @param districtId уникальный идентификатор округа
+ * @param candidates список кандидатов округа
+ */
 public record District(String districtId, List<Candidate> candidates) {
-
     public District {
         if (districtId == null) {
             throw new IllegalArgumentException("id is null");
