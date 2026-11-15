@@ -36,7 +36,7 @@ public final class Plurality implements VotingMethod {
                 .filter(e -> e.getValue() == max)
                 .map(Map.Entry::getKey)
                 .toList();
-        
+
         ProtocolStep step = new ProtocolStep(1, scores, List.of(), "первые места");
         return new Result(leaders, false, List.of(step));
     }
