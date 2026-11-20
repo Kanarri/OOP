@@ -3,10 +3,9 @@ package model;
 import java.util.*;
 
 /**
- * Сборщик входа для подсчёта
+ * Сборщик входых данных для подсчета для подсчёта
  */
 public final class ElectionAssembler {
-    private ElectionAssembler() {}
 
     public static Election forDistrict(District district, List<Voter> voters) {
         if (district == null)
@@ -27,7 +26,7 @@ public final class ElectionAssembler {
         int k = district.candidatesCount();
         List<Ballot> ballots = new ArrayList<>();
 
-        for (Voter v : voters) {
+        for (Voter v: voters) {
             if (!v.district().equals(district.districtId())) {
                 continue;
             }
@@ -49,8 +48,7 @@ public final class ElectionAssembler {
         return ballots;
     }
 
-    public static Map<String, Election> forAllDistricts(List<District> districts,
-                                                        List<Voter> voters) {
+    public static Map<String, Election> forAllDistricts(List<District> districts, List<Voter> voters) {
         if (districts.isEmpty())
             throw new IllegalArgumentException("districts is empty");
         if (voters.isEmpty())

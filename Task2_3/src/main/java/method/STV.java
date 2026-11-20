@@ -31,7 +31,7 @@ public final class STV implements VotingMethod {
 
         while (true) {
             Map<Candidate, Integer> scores = new LinkedHashMap<>();
-            for (Candidate c : alive) {
+            for (Candidate c: alive) {
                 scores.put(c, 0);
             }
 

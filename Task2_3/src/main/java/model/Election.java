@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Готовый вход для подсчёта: кандидаты и бюллетени одного округа
+ * Вход для подсчёта кандидаты и бюллетени одного округа
  * @param candidates кандидаты округа
  * @param ballots бюллетени избирателей этого округа
  */
@@ -27,11 +27,11 @@ public record Election(List<Candidate> candidates, List<Ballot> ballots) {
         Set<Candidate> candidateSet = new HashSet<>(candidates);
         int k = candidates.size();
 
-        for (Ballot b : ballots) {
+        for (Ballot b: ballots) {
             if (b.size() != k) {
                 throw new IllegalArgumentException("ballot must contain all candidates");
             }
-            for (Candidate c : b.ranking()) {
+            for (Candidate c: b.ranking()) {
                 if (!candidateSet.contains(c)) {
                     throw new IllegalArgumentException("ballot contains unknown candidate: " + c);
                 }

@@ -12,13 +12,13 @@ public record Ballot(List<Candidate> ranking){
     public Ballot{
         if (ranking == null || ranking.isEmpty())
             throw new IllegalArgumentException("ranking can't be empty or null");
-        if (ranking.stream().distinct().count() != ranking().size())
+        if (ranking.stream().distinct().count() != ranking.size())
             throw new IllegalArgumentException("ranking contains duplicates");
         ranking = List.copyOf(ranking);
     }
 
     public int size(){
-        return ranking().size();
+        return ranking.size();
     }
 
     public int positionOf(Candidate candidate){
